@@ -1,0 +1,57 @@
+<html>
+<head><style>
+*{
+    font-size: 1.3em;
+    font-family: sans-serif;
+}
+body{
+    margin:0px;
+    width:100%;
+    height:100%;
+}
+button, div{
+    width:80%;
+    height:15%;
+}
+button{
+    color: #fff;
+    background: #0ff;
+    font-weight: bold;
+    border: none;
+    margin:10px;
+}
+</style></head><body>
+
+<div style="font-face: sans-serif">Score: 0</div>
+<button style='background:#08f'>A</button>
+<button style='background:#fb0'>B</button>
+<button style='background:#f80'>C</button>
+<button style='background:#808'>D</button>
+
+<script>
+
+var q = 1;
+var score = 0;
+
+document.querySelectorAll('button').forEach(e=>{
+    e.onclick=()=>{
+
+        alert('Your answer has been recorded')
+
+        let url = window.location.href+'?ans='+e.innerText+'&q='+q
+        q += 1;
+
+        let resp=fetch(url).then(r=>{
+            if(r.status == 200){
+                score += 5;
+            }
+            document.querySelector('div').innerHTML = 'score: ' + score;
+        })
+
+    }
+})
+
+</script>
+
+</body>
+</html>
